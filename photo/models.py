@@ -1,6 +1,25 @@
 from django.db import models
+import datetime as dt
 
-#  Create your models here.
+# Create your models here.
+class Photographer(models.Model):
+    first_name = models.CharField(max_length =30)
+    last_name = models.CharField(max_length =30)
+    
+    def __str__(self):
+        return self.first_name
+    def save_photographer(self):
+        self.save()
+    def delete_photographer(self):
+        self.delete()   
+    @classmethod
+    def display_photographers(cls):
+        photographers= Photographer.objects.all()
+        for photographer in photographers:
+            return photographer        
+    class Meta:
+        ordering = ['first_name']
+
 class Location(models.Model):
     photo_location = models.CharField(max_length =30)
 
@@ -43,6 +62,7 @@ class Category(models.Model):
 
 class Image(models.Model):
     title = models.CharField(max_length =30)
+    photographer = models.ForeignKey(Photographer,on_delete=models.CASCADE,)
     description = models.TextField(max_length =30)
     image = models.ImageField(upload_to = 'photos/', default='No image')
     location = models.ForeignKey(Location,on_delete=models.CASCADE,)

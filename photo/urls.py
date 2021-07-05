@@ -5,8 +5,8 @@ from . import views
 
 urlpatterns=[
     url('^$',views.welcome,name = 'index.html'),
-    url(r'^search/', views.search_image, name='search_image'),
-    url(r'^location/(\d+)', views.location_filter, name='location_filter'),
+    url(r'^search/', views.search_results, name='search_results'),
+    url(r'^location/(\d+)', views.filter_by_location, name='location_filter'),
     url(r'^image/(\d+)',views.image,name = 'image')
 ]
 if settings.DEBUG:
