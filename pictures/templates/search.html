@@ -1,0 +1,72 @@
+<div class="" style="font-size: 20px; font-family: 'Itim', cursive;">
+    {%extends 'base.html'%}
+    {% block content %}
+    <div class="container-fluid">
+
+
+        <div class="">
+            <div class="jumbotron jumbotron-fluid mt-3">
+                {% if pictures%}
+                <div class="container">
+                    <h1 class="text-center"> Found {{ pictures|length }} of searched term {{message}}</h1>
+                    {%else%}
+                    <h2 class="lead"> Found 0 picture category for the search term {{message}}</h2>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="row">
+            {%if pictures%}
+            {%for pic in pictures%}
+            <div class="col-md-3 mb-3">
+
+                <!--Card-->
+                <div class="card">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <a data-toggle="modal" data-target="#picId{{pic.id}}">
+                            <img src="{{pic.image.url}}" class="card-img-top img-responsive styled"" alt=" image"
+                                width="100p">
+                        </a>
+                    </div>
+                </div>
+                <!--/.Card-->
+
+                <!-- Modal -->
+                <div class="modal fade" id="picId{{pic.id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog .modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{pic.imageName}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="{{pic.image.url}}" class="img-fluid" alt="image">
+                            </div>
+                            <div class="modal-footer">
+                                <div class="row">
+                                    <div class="col-sm">Description: {{pic.imageDescription}}</div>
+                                    <div class="col-sm">Location: {{pic.imageLocation}}</div>
+                                </div>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {%endfor%}
+            {%endif%}
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

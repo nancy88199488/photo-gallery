@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'photo',
+    'pictures',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gallery',
         'USER':'postgres',
-        'PASSWORD': 'salome',
+        'PASSWORD': 'mary',
         'HOST': 'localhost',
     }
 }
